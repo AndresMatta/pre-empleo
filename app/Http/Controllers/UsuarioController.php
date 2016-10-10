@@ -6,10 +6,16 @@ use Illuminate\Http\Request;
 
 use Formulario\Http\Requests;
 use Formulario\User;
-use Validator;
+use Formulario\Http\Requests\UsuarioRequest;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class UsuarioController extends Controller
 {
+
+use RegistersUsers;
+
+protected $username = 'username';
+
  /**
      * Display a listing of the resource.
      *
@@ -42,19 +48,10 @@ class UsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UsuarioRequest $request)
     {
         //
-       
         $user = $request->all();
-
-        Validator::make($user, [
-            'username' => 'required|max:255|unique:users',
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'tipo' => 'required|max:255',
-            'password' => 'required|min:6|confirmed'
-        ]);
 
         User::create([
             'username' => $user['username'],

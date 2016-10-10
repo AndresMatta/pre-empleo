@@ -13,7 +13,7 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/estilos.css" rel="stylesheet">
-   
+    {!!Html::style('css/font-awesome.min.css')!!}
 
     <!-- Scripts -->
     <script>

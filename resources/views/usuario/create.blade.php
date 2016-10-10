@@ -1,12 +1,14 @@
 @extends('layouts.admin')
 
    @section('content')
+   @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <p><i class="fa fa-exclamation-triangle fa-2x" aria-hidden="true"> 
+        </i> Ha ocurrido un error en la validación</p>
+    </div>
+   @endif
    
    {!!Form::open(['route'=>'usuario.store', 'method'=>'POST'])!!}
-   
-   <div id="msj-success" class="alert alert-success" role="alert" style="display: none;">
-   		<strong>Usuario creado correctamente</strong>
-   </div>
 
    <div class="col col-md-6">
    <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">

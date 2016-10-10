@@ -5,48 +5,94 @@
  		<div class="panel-body">
         <div class="col-md-6">
         
-			<div class="form-group">
+			<div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
 				{!!Form::label('nombre','Nombre completo:')!!}<br>
-				{!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Ingrese aquí el nombre'])!!}
+				{!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Ingrese aquí el nombre', 'required'])!!}
+
+				@if ($errors->has('nombre'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('nombre') }}</strong>
+                    </span>
+                @endif
 			</div>
 
-			<div class="form-group">
+			<div class="form-group{{ $errors->has('identificacion') ? ' has-error' : '' }}">
 				{!!Form::label('identificacion','Número de cédula:')!!}<br>
-				{!!Form::text('identificacion',null,['class'=>'form-control','placeholder'=>'Ingrese aquí la cédula'])!!}
+				{!!Form::text('identificacion',null,['class'=>'form-control','placeholder'=>'Ingrese aquí la cédula', 'required'])!!}
+
+				@if ($errors->has('identificacion'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('identificacion') }}</strong>
+                    </span>
+                @endif
 			</div>
 
-			<div class="form-group">
+			<div class="form-group{{ $errors->has('edad') ? ' has-error' : '' }}">
 				{!!Form::label('edad','Edad:')!!}<br>
-				{!!Form::text('edad',null,['class'=>'form-control','placeholder'=>'Ingrese aquí la edad'])!!}
+				{!!Form::text('edad',null,['class'=>'form-control','placeholder'=>'Ingrese aquí la edad', 'required'])!!}
+
+				@if ($errors->has('edad'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('edad') }}</strong>
+                    </span>
+                @endif
 			</div>
 
-			<div class="form-group">
+			<div class="form-group{{ $errors->has('estado_civil') ? ' has-error' : '' }}">
 				{!!Form::label('estado_civil','Estado Civil:')!!}<br>
 				{!!Form::select('estado_civil', ['SOLTERO' => 'Soltero/a','CASADO' => 'Casado/a','DIVORCIADO' => 'Divorciado/a','VIUDO' => 'Viudo/a'], null, 
-				['class'=>'form-control','placeholder' => 'Seleccione el estado civil...'])!!}
+				['class'=>'form-control','placeholder' => 'Seleccione el estado civil...', 'required'])!!}
+
+				@if ($errors->has('estado_civil'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('estado_civil') }}</strong>
+                    </span>
+                @endif    
 			</div>
 	    </div>
 	    <div class="col-md-6">
-			<div class="form-group">
+			<div class="form-group{{ $errors->has('nacionalidad') ? ' has-error' : '' }}">
 				{!!Form::label('nacionalidad','Nacionalidad:')!!}<br>
-				{!!Form::text('nacionalidad',null,['class'=>'form-control','placeholder'=>'Ingrese aquí la nacionalidad'])!!}
+				{!!Form::text('nacionalidad',null,['class'=>'form-control','placeholder'=>'Ingrese aquí la nacionalidad', 'required'])!!}
+
+				@if ($errors->has('nacionalidad'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('nacionalidad') }}</strong>
+                    </span>
+                @endif
 			</div>
 
-			<div class="form-group">
+			<div class="form-group{{ $errors->has('residencia') ? ' has-error' : '' }}">
 				{!!Form::label('residencia','Residencia:')!!}<br>
-				{!!Form::text('residencia',null,['class'=>'form-control','placeholder'=>'Ingrese aquí la residencia'])!!}
+				{!!Form::text('residencia',null,['class'=>'form-control','placeholder'=>'Ingrese aquí la residencia', 'required'])!!}
+				@if ($errors->has('residencia'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('residencia') }}</strong>
+                    </span>
+                @endif
 			</div>
 
-			<div class="form-group">
+			<div class="form-group{{ $errors->has('puesto') ? ' has-error' : '' }}">
 				{!!Form::label('puesto','Puesto del empleado:')!!}<br>
-				{!!Form::text('puesto',null,['class'=>'form-control','placeholder'=>'Ingrese aquí el puesto'])!!}
+				{!!Form::text('puesto',null,['class'=>'form-control','placeholder'=>'Ingrese aquí el puesto', 'required'])!!}
+				@if ($errors->has('puesto'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('puesto') }}</strong>
+                    </span>
+                @endif
 			</div>
 
-			<div class="form-group">
+			<div class="form-group{{ $errors->has('empresa') ? ' has-error' : '' }}">
 				{!!Form::label('empresa','Empresa:')!!}<br>
 				{!!Form::select('empresa', ['COOPELESCA' => 'Coopelesca'], null, 
-				['class'=>'form-control','placeholder' => 'Seleccione una empresa...'])!!}<br>
-			</div>
+				['class'=>'form-control','placeholder' => 'Seleccione una empresa...', 'required'])!!}
+				
+				@if ($errors->has('empresa'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('empresa') }}</strong>
+                    </span>
+                @endif
+			</div><br>
 	</div>		
 	</div>
     </div>
@@ -59,16 +105,18 @@
     <ul class="list-group">
 	<div class="col-md-6">
 	
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p1') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','1. ¿Practica usted algún deporte o actividad adicional?')!!}<br>
-                <div class="radio">                                 
-				<input type="radio" name="p1" id="p1S" value="SI" onclick="toggle(this,'uno' )"> 
+                <div class="radio">   
+				<input type="radio" name="p1" id="p1S" value="SI" onclick="toggle(this,'uno' )"
+				@if(old('p1')=='SI') checked="checked" @endif> 
 				<label for="p1S">Sí</label>
-		
-				<input type="radio" name="p1" id="p1N" value="NO" onclick="toggle(this,'uno')">
+				<input type="radio" name="p1" id="p1N" value="NO" onclick="toggle(this,'uno')"
+				@if(old('p1')=='NO') checked="checked" @endif> 
 				<label for="p1N">No</label>
 				</div>
-				<div id="uno" style="display:none">
+				<div id="uno" @if(old('p1')=='NO') style="display:none" @endif>
 				{!!Html::decode(Form::label('p1a','<small>Si su respuesta anterior fue sí, ¿Con cuanta frecuencia?</small>'))!!}
 				{!!Form::select('p1a', [
 					'5 o más veces a la semana' => '5 o más veces a la semana', 
@@ -77,19 +125,28 @@
 					'Menos de 1 vez por semana'=>'Menos de 1 vez por semana'],  null, 
 				['class'=>'form-control','placeholder' => 'Seleccione una opción...'])!!}<br>
 			    </div>
-			</div>
+			    </div>
+			    @if ($errors->has('p1'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p1') }}</strong>
+                    </span>
+                @endif
+			
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p2') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','2. ¿Usted fuma?')!!}<br>
                 <div class="radio">                                 
-				<input type="radio" name="p2" id="p2S" value="SI" onclick="toggle(this,'dos')"> 
+				<input type="radio" name="p2" id="p2S" value="SI" onclick="toggle(this,'dos')"
+				@if(old('p2')=='SI') checked="checked" @endif> 
 				<label for="p2S">Sí</label>
 		
-				<input type="radio" name="p2" id="p2N" value="NO" onclick="toggle(this,'dos')">
+				<input type="radio" name="p2" id="p2N" value="NO" onclick="toggle(this,'dos')"
+				@if(old('p2')=='NO') checked="checked" @endif>
 				<label for="p2N">No</label>
 				</div>
-				<div id="dos" style="display: none">
+				<div id="dos" @if(old('p2')=='NO') style="display: none" @endif>
 				{!!Html::decode(Form::label('p2a','<small>Si su respuesta anterior fue sí, ¿Cuánto fuma? </small>'))!!}
 				{!!Form::select('p2a', [
 					'Más de 2 paquetes por día' => 'Más de 2 paquetes por día', 
@@ -100,18 +157,25 @@
 				['class'=>'form-control','placeholder' => 'Seleccione una opción...'])!!}<br>
 				</div>
 			</div>
+			@if ($errors->has('p2'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p2') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p3') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','3. ¿Consume usted alcohol?')!!}<br>
                 <div class="radio">                                 
-				<input type="radio" name="p3" id="p3S" value="SI" onclick="toggle(this,'tres')"> 
+				<input type="radio" name="p3" id="p3S" value="SI" onclick="toggle(this,'tres')"
+				@if(old('p3')=='SI') checked="checked" @endif> 
 				<label for="p3S">Sí</label>
-		
-				<input type="radio" name="p3" id="p3N" value="NO" onclick="toggle(this,'tres')">
+				<input type="radio" name="p3" id="p3N" value="NO" onclick="toggle(this,'tres')"
+				@if(old('p3')=='NO') checked="checked" @endif>
 				<label for="p3N">No</label>
 				</div>
-				<div id="tres" style="display: none;">
+				<div id="tres" @if(old('p3')=='NO') style="display: none; @endif">
 				{!!Html::decode(Form::label('p3a','<small>Si su respuesta anterior fue sí, ¿Cuánto consume?</small>'))!!}
 				{!!Form::select('p3a', [
 					'Una vez cada 3 meses' => 'Una vez cada 3 meses', 
@@ -122,33 +186,54 @@
 				['class'=>'form-control','placeholder' => 'Seleccione una opción...'])!!}<br>
                 </div>
 			</div>
+			@if ($errors->has('p3'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p3') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p4') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','4. Indique si ha tenido problemas de salud en los últimos 6 meses (Cualquier tipo de problema o síntoma aunque no tenga diagnóstico médico ni haya consultado con un médico)')!!}<br>
 				<div class="radio">
-				<input type="radio" name="p4" id="p4S" value="SI"> 
+				<input type="radio" name="p4" id="p4S" value="SI" 
+				@if(old('p4')=='SI') checked="checked" @endif> 
 				<label for="p4S">Sí</label>
 		
-				<input type="radio" name="p4" id="p4N" value="NO">
+				<input type="radio" name="p4" id="p4N" value="NO" 
+				@if(old('p4')=='NO') checked="checked" @endif>
 				<label for="p4N">No</label>
 				</div><br>
 			</div>
+			@if ($errors->has('p4'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p4') }}</strong>
+                    </span>
+            @endif
 			</li>
 			
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p5') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','5. Indique si tiene algún tipo de examen pendiente (De laboratorio, radiografías, ultrasonidos, tomografías, electrocardiograma o de cualquier otro tipo)')!!}<br>
 				<div class="radio">
-				<input type="radio" name="p5" id="p5S" value="SI"> 
+				<input type="radio" name="p5" id="p5S" value="SI" 
+				@if(old('p5')=='SI') checked="checked" @endif> 
 				<label for="p5S">Sí</label>
-		
-				<input type="radio" name="p5" id="p5N" value="NO">
+				<input type="radio" name="p5" id="p5N" value="NO"
+				@if(old('p5')=='SI') checked="checked" @endif>
 				<label for="p5N">No</label>
 				</div><br>
 			</div>
+			@if ($errors->has('p5'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p5') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p6') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','6. Indique cuando fue la última vez que consultó con un médico')!!}<br>
 				{!!Form::select('p6', [
 					'Hace más de 1 año' => 'Hace más de 1 año', 
@@ -158,102 +243,163 @@
 					'Ha consultado en este último mes'=>'Ha consultado en este último mes'],  null, 
 				['class'=>'form-control','placeholder' => 'Seleccione una opción...'])!!}<br>
 			</div>
+			@if ($errors->has('p6'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p6') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p7') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','7. ¿Su peso y su condicion general (Estado de ánimo, apetito, apariencia, color de piel, etc) han tenido alguna variación en los últimos 6 meses?')!!}<br>
 				<div class="radio">
-				<input type="radio" name="p7" id="p7S" value="SI"> 
+				<input type="radio" name="p7" id="p7S" value="SI"
+				@if(old('p7')=='SI') checked="checked" @endif> 
 				<label for="p7S">Sí</label>
-		
-				<input type="radio" name="p7" id="p7N" value="NO">
+				<input type="radio" name="p7" id="p7N" value="NO" 
+				@if(old('p7')=='NO') checked="checked" @endif>
 				<label for="p7N">No</label>
 				</div><br>
 			</div>
+			@if ($errors->has('p7'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p7') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p8') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','8. ¿Utiliza o ha utilizado algún tipo de droga?')!!}<br>
 				<div class="radio">
-				<input type="radio" name="p8" id="p8S" value="SI"> 
+				<input type="radio" name="p8" id="p8S" value="SI"
+				@if(old('p8')=='SI') checked="checked" @endif> 
 				<label for="p8S">Sí</label>
-		
-				<input type="radio" name="p8" id="p8N" value="NO">
+				<input type="radio" name="p8" id="p8N" value="NO"
+				@if(old('p8')=='NO') checked="checked" @endif>
 				<label for="p8N">No</label>
 				</div><br>
 			</div>
+			@if ($errors->has('p8'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p8') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p9') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','9. ¿Utiliza o ha utilizado algún medicamente recientemente?')!!}<br>
 				<div class="radio">
-				<input type="radio" name="p9" id="p9S" value="SI"> 
+				<input type="radio" name="p9" id="p9S" value="SI" 
+				@if(old('p9')=='SI') checked="checked" @endif> 
 				<label for="p9S">Sí</label>
-		
-				<input type="radio" name="p9" id="p9N" value="NO">
+				<input type="radio" name="p9" id="p9N" value="NO"
+				@if(old('p9')=='NO') checked="checked" @endif>
 				<label for="p9N">No</label>
 				</div><br>
 			</div>
+			@if ($errors->has('p9'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p9') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p10') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','10. ¿Ha habido en su familia muertes por enfermedad de: Corazón - Circulación - Diabetes?')!!}<br>
 				<div class="radio">
-				<input type="radio" name="p10" id="p10S" value="SI"> 
+				<input type="radio" name="p10" id="p10S" value="SI"
+				@if(old('p10')=='SI') checked="checked" @endif> 
 				<label for="p10S">Sí</label>
-		
-				<input type="radio" name="p10" id="p10N" value="NO">
+				<input type="radio" name="p10" id="p10N" value="NO"
+				@if(old('p10')=='NO') checked="checked" @endif>
 				<label for="p10N">No</label>
 				</div><br>
 			</div>
+			@if ($errors->has('p10'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p10') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p11') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','11. ¿Ha tenido o se encuentra en tratamiento de rehabilitación física o mental?')!!}<br>
 				<div class="radio">
-				<input type="radio" name="p11" id="p11S" value="SI"> 
+				<input type="radio" name="p11" id="p11S" value="SI"
+				@if(old('p11')=='SI') checked="checked" @endif> 
 				<label for="p11S">Sí</label>
-		
-				<input type="radio" name="p11" id="p11N" value="NO">
+				<input type="radio" name="p11" id="p11N" value="NO"
+				@if(old('p11')=='NO') checked="checked" @endif>
 				<label for="p11N">No</label>
 				</div><br>
 			</div>
+			@if ($errors->has('p11'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p11') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p12') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','12. ¿Ha tenido o se encuentra en tratamiento con insulina, cortisona u otro tipo de hormona?')!!}<br>
 				<div class="radio">
-				<input type="radio" name="p12" id="p12S" value="SI"> 
+				<input type="radio" name="p12" id="p12S" value="SI"
+				@if(old('p12')=='SI') checked="checked" @endif> 
 				<label for="p12S">Sí</label>
-		
-				<input type="radio" name="p12" id="p12N" value="NO">
+				<input type="radio" name="p12" id="p12N" value="NO"
+				@if(old('p12')=='NO') checked="checked" @endif>
 				<label for="p12N">No</label>
 				</div><br>
 			</div>
+			@if ($errors->has('p12'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p12') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p13') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','13. ¿Se ha sometido a algún tipo de examen radiológico por enfermedad o chequeo médico, por ejemplo Rx Torax, ultrasonido, gastroscopía, mamografía, etc?')!!}<br>
 				<div class="radio">
-				<input type="radio" name="p13" id="p13S" value="SI"> 
+				<input type="radio" name="p13" id="p13S" value="SI"
+				@if(old('p13')=='SI') checked="checked" @endif> 
 				<label for="p13S">Sí</label>
-		
-				<input type="radio" name="p13" id="p13N" value="NO">
+				<input type="radio" name="p13" id="p13N" value="NO"
+				@if(old('p13')=='NO') checked="checked" @endif>
 				<label for="p13N">No</label>
 				</div><br>
 			</div>
+			@if ($errors->has('p13'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p13') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p14') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','14. ¿Le han practicado electrocardiograma, electroencefalogramas, o similares?')!!}<br>
 				<div class="radio">
-				<input type="radio" name="p14" id="p14S" value="SI"> 
+				<input type="radio" name="p14" id="p14S" value="SI"
+				@if(old('p14')=='SI') checked="checked" @endif> 
 				<label for="p14S">Sí</label>
-		
-				<input type="radio" name="p14" id="p14N" value="NO">
+				<input type="radio" name="p14" id="p14N" value="NO"
+				@if(old('p14')=='NO') checked="checked" @endif>
 				<label for="p14N">No</label>
 				</div><br>
 			</div>
+			@if ($errors->has('p14'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p14') }}</strong>
+                    </span>
+            @endif
 			</li>
 
             <li class="list-group-item">
@@ -269,85 +415,140 @@
             <div id="ocultar1" style="display: none">
 
 			<ul id="lista1" class="list-group">
-			<li class="list-group-item">
+			<li class="list-group-item{{ $errors->has('p15a') ? ' has-error' : '' }}">
 			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>15a. Dolor de cabeza crónico, vértigo, epilepsia o convulsiones, estados depresivos o ansiosos, o alguna otra enfermedad del sistema nervioso.</small>'))!!}
 				<div class="radio">
-				<input type="radio" name="p15a" id="p15aS" value="SI"> 
+				<input type="radio" name="p15a" id="p15aS" value="SI"
+				@if(old('p15a')=='SI') checked="checked" @endif> 
 				<label for="p15aS">Sí</label>
-		
-				<input type="radio" name="p15a" id="p15aN" value="NO">
+				<input type="radio" name="p15a" id="p15aN" value="NO"
+				@if(old('p15a')=='NO') checked="checked" @endif>
 				<label for="p15aN">No</label>
 				</div>
-			</div></li>
+			</div>
+			@if ($errors->has('p15a'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p15a') }}</strong>
+                    </span>
+            @endif
+			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p15b') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>15b. Enfermedades o alguna perturbación de los ojos u oídos.</small>'))!!}
 				<div class="radio">
-				<input type="radio" name="p15b" id="p15bS" value="SI"> 
+				<input type="radio" name="p15b" id="p15bS" value="SI"
+				@if(old('p15b')=='SI') checked="checked" @endif> 
 				<label for="p15bS">Sí</label>
-		
-				<input type="radio" name="p15b" id="p15bN" value="NO">
+				<input type="radio" name="p15b" id="p15bN" value="NO"
+				@if(old('p15b')=='NO') checked="checked" @endif>
 				<label for="p15bN">No</label>
 				</div>
-			</div></li>	
+			</div>
+			@if ($errors->has('p15b'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p15b') }}</strong>
+                    </span>
+            @endif
+			</li>	
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p15c') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>15c. Presion arterial elevada, soplos cardíacos, infartos u otra enfermedad del corazón, fiebre reumática, dificultades en la respiración, dolor de pecho, várices, fiebitis, hemofilia u otras enfermedades del aparato circulatorio.</small>'))!!}
 				<div class="radio">
-				<input type="radio" name="p15c" id="p15cS" value="SI"> 
+				<input type="radio" name="p15c" id="p15cS" value="SI"
+				@if(old('p15c')=='SI') checked="checked" @endif> 
 				<label for="p15cS">Sí</label>
-		
-				<input type="radio" name="p15c" id="p15cN" value="NO">
+				<input type="radio" name="p15c" id="p15cN" value="NO"
+				@if(old('p15c')=='NO') checked="checked" @endif>
 				<label for="p15cN">No</label>
 				</div>
-			</div></li>	
+			</div>
+			@if ($errors->has('p15c'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p15c') }}</strong>
+                    </span>
+            @endif
+			</li>	
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p15d') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>15d. Ronquera crónica, asma, bronquitis crónica u otras enfermedades del aparato respiratorio.</small>'))!!}
 				<div class="radio">
 				<input type="radio" name="p15d" id="p15dS" value="SI"> 
+				@if(old('p15d')=='SI') checked="checked" @endif
 				<label for="p15dS">Sí</label>
-		
-				<input type="radio" name="p15d" id="p15dN" value="NO">
+				<input type="radio" name="p15d" id="p15dN" value="NO"
+				@if(old('p15d')=='NO') checked="checked" @endif>
 				<label for="p15dN">No</label>
 				</div>
-			</div></li>
+			</div>
+			@if ($errors->has('p15d'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p15d') }}</strong>
+                    </span>
+            @endif
+			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p15e') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>15e. Úlcera gástrica, sangrado digestivo, hepatitis u otras enfemedades del hígado y del aparato digestivo.</small>'))!!}
 				<div class="radio">
-				<input type="radio" name="p15e" id="p15eS" value="SI"> 
+				<input type="radio" name="p15e" id="p15eS" value="SI"
+				@if(old('p15e')=='SI') checked="checked" @endif> 
 				<label for="p15eS">Sí</label>
 		
-				<input type="radio" name="p15e" id="p15eN" value="NO">
+				<input type="radio" name="p15e" id="p15eN" value="NO"
+				@if(old('p15e')=='NO') checked="checked" @endif>
 				<label for="p15eN">No</label>
 				</div>
-			</div></li>	
+			</div>
+			@if ($errors->has('p15e'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p15e') }}</strong>
+                    </span>
+            @endif
+			</li>	
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p15f') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>15f. Dislipidemia(alteración del metabolismo lípídico(grasas), con su consecuente alteración de las concentraciones de lípidos y lipoproteínas en la sangre) ¿Se ha realizado exámenes de colesterol y triglíceridos?</small>'))!!}
 				<div class="radio">
-				<input type="radio" name="p15f" id="p15fS" value="SI"> 
+				<input type="radio" name="p15f" id="p15fS" value="SI"
+				@if(old('p15f')=='SI') checked="checked" @endif> 
 				<label for="p15fS">Sí</label>
-		
-				<input type="radio" name="p15f" id="p15fN" value="NO">
+				<input type="radio" name="p15f" id="p15fN" value="NO"
+				@if(old('p15f')=='NO') checked="checked" @endif>
 				<label for="p15fN">No</label>
 				</div>
-			</div></li>	
+			</div>
+			@if ($errors->has('p15f'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p15f') }}</strong>
+                    </span>
+            @endif
+			</li>	
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p15g') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>15g. Enfermedades en riñones, vejiga, próstata, genitales, enfermedades venéreas o albuminiria: presencia de albúmina(proteína hidrosoluble que se encuentra en el plasma sanguíneo) en la orina.</small>'))!!}
 				<div class="radio">
 				<input type="radio" name="p15g" id="p15gS" value="SI"> 
 				<label for="p15gS">Sí</label>
-		
 				<input type="radio" name="p15g" id="p15gN" value="NO">
 				<label for="p15gN">No</label>
 				</div>
-			</div></li>	
+			</div>
+			@if ($errors->has('p15g'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p15g') }}</strong>
+                    </span>
+            @endif
+			</li>	
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p15h') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>15h. Artritis, afecciones o deformidades en la columna, lumbalgia, ciática, reumatismo, gota u otras enfermedades en los huesos o articulaciones.</small>'))!!}
 				<div class="radio">
 				<input type="radio" name="p15h" id="p15hS" value="SI"> 
@@ -356,9 +557,16 @@
 				<input type="radio" name="p15h" id="p15hN" value="NO">
 				<label for="p15hN">No</label>
 				</div>
-			</div></li>	
+			</div>
+			@if ($errors->has('p15h'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p15h') }}</strong>
+                    </span>
+            @endif
+            </li>	
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p15i') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>15i. Diabetes.</small>'))!!}
 				<div class="radio">
 				<input type="radio" name="p15i" id="p15iS" value="SI"> 
@@ -367,9 +575,16 @@
 				<input type="radio" name="p15i" id="p15iN" value="NO">
 				<label for="p15iN">No</label>
 				</div>
-			</div></li>
+			</div>
+			@if ($errors->has('p15i'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p15i') }}</strong>
+                    </span>
+            @endif
+			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p15j') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>15j. Tumores, cáncer o quistes.</small>'))!!}
 				<div class="radio">
 				<input type="radio" name="p15j" id="p15jS" value="SI"> 
@@ -379,12 +594,18 @@
 				<label for="p15jN">No</label>
 				</div><br>
 			</div>
+			@if ($errors->has('p15j'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p15j') }}</strong>
+                    </span>
+            @endif
 			</li>
 			</ul>
 			</div>
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p16') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','16. ¿Le han practicado alguna prueba para detectar el SIDA?')!!}<br>
 				<div class="radio">
 				<input type="radio" name="p16" id="p16S" value="SI" onclick="toggle(this,'cuatro')"> 
@@ -398,9 +619,15 @@
 				{!!Form::text('p16a',null,['class'=>'form-control','placeholder'=>'Ingrese aquí la causa'])!!}
 				</div>
 			</div>
+			@if ($errors->has('p16'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p16') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-		<li class="list-group-item"><br>
+		<li class="list-group-item">
+		<br>
 		{!!Form::label('pregunta','17. ¿En los últimos años ha padecido o padece de?: ')!!}
 
 		<div class="checkbox">
@@ -410,7 +637,8 @@
 
          <div id="ocultar2" style="display: none">
         <ul id="lista2" class="list-group">
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p17a') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>17a. Fiebre de origen desconocido.</small>'))!!}
 				<div class="radio">
 				<input type="radio" name="p17a" id="p17aS" value="SI"> 
@@ -420,9 +648,15 @@
 				<label for="p17aN">No</label>
 				</div>
 			</div>
+			@if ($errors->has('p17a'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p17a') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p17b') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>17b. Diarreas persistentes.</small>'))!!}
 				<div class="radio">
 				<input type="radio" name="p17b" id="p17bS" value="SI"> 
@@ -432,9 +666,15 @@
 				<label for="p17bN">No</label>
 				</div>
 			</div>
+			@if ($errors->has('p17b'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p17b') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p17c') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>17c. Lesiones orales o en la piel.</small>'))!!}
 				<div class="radio">
 				<input type="radio" name="p17c" id="p17cS" value="SI"> 
@@ -444,9 +684,15 @@
 				<label for="p17cN">No</label>
 				</div>
 			</div>
+			@if ($errors->has('p17c'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p17c') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p17d') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>17d. Inflamación de ganglios.</small>'))!!}
 				<div class="radio">
 				<input type="radio" name="p17d" id="p17dS" value="SI"> 
@@ -456,9 +702,15 @@
 				<label for="p17dN">No</label>
 				</div>
 			</div>
+			@if ($errors->has('p17d'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p17d') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p17e') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>17e. Sudoración nocturna.</small>'))!!}
 				<div class="radio">
 				<input type="radio" name="p17e" id="p17eS" value="SI"> 
@@ -468,9 +720,15 @@
 				<label for="p17eN">No</label>
 				</div>
 			</div>
+			@if ($errors->has('p17e'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p17e') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p17f') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>17f. Dolores persistentes en miembros o articulaciones.</small>'))!!}
 				<div class="radio">
 				<input type="radio" name="p17f" id="p17fS" value="SI"> 
@@ -480,9 +738,15 @@
 				<label for="p17fN">No</label>
 				</div>
 			</div>
+			@if ($errors->has('p17f'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p17f') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p17g') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>17g. Pérdidas de la fuerza vital o normal.</small>'))!!}
 				<div class="radio">
 				<input type="radio" name="p17g" id="p17gS" value="SI"> 
@@ -492,9 +756,15 @@
 				<label for="p17gN">No</label>
 				</div>
 			</div>
+			@if ($errors->has('p17g'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p17g') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p17h') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>17h. Meningitis.</small>'))!!}
 				<div class="radio">
 				<input type="radio" name="p17h" id="p17hS" value="SI"> 
@@ -502,16 +772,22 @@
 		
 				<input type="radio" name="p17h" id="p17hN" value="NO">
 				<label for="p17hN">No</label>
-				</div><br>
+				</div>
 			</div>
-			</li>		
+			@if ($errors->has('p17h'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p17h') }}</strong>
+                    </span>
+            @endif
+			</li><br>	
 		</ul>
 		</div>
 		</li>
 		</div><!--Fin del col -->
 		<div class="col-md-6">
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p18') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','18. ¿En los últimos 6 meses ha aumentado o disminuido de peso?')!!}<br>
 				<div class="radio">
 				<input type="radio" name="p18" id="p18S" value="SI" onclick="toggle(this, 'cinco')"> 
@@ -533,9 +809,15 @@
 				
 				</div>
 			</div>
+			@if ($errors->has('p18'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p18') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p19') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','19. ¿Ha estado hospitalizado?')!!}<br>
 
 				<div class="radio">
@@ -560,9 +842,15 @@
 				
 				</div>
 			</div>
+			@if ($errors->has('p19'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p19') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p20') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','20. ¿Le han practicado algún tipo de operación?')!!}<br>
 
 				<div class="radio">
@@ -587,9 +875,15 @@
 				
 				</div>
 			</div>
+			@if ($errors->has('p20'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p20') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p21') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','21. ¿Piensa someterse a alguna intervención quirúrgica en un futuro próximo?')!!}<br>
 
 				<div class="radio">
@@ -608,9 +902,15 @@
 				
 				</div>
 			</div>
+			@if ($errors->has('p21'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p21') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p22') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','22. ¿Ha sido incapacitado por enfermedad o accidente?')!!}<br>
 
 				<div class="radio">
@@ -635,9 +935,15 @@
 
 				</div>
 			</div>
+			@if ($errors->has('p22'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p22') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p23') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','23. ¿Tiene o ha tenido algún padecimiento que no se le haya mencionado?')!!}<br>
 
 				<div class="radio">
@@ -656,9 +962,15 @@
 				
 				</div>
 			</div>
+			@if ($errors->has('p23'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p23') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p24') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','24. ¿Está tramitando o piensa tramitar en el corto plazo una incapacidad permanente?')!!}<br>
 
 				<div class="radio">
@@ -669,9 +981,15 @@
 				<label for="p24N">No</label>
 				</div>
 			</div>
+			@if ($errors->has('p24'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p24') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p25') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','25. ¿A consultado al Instituto Nacional de Seguros (INS) por alguna enfermedad o accidente de trabajo?')!!}<br>
 
 				<div class="radio">
@@ -690,9 +1008,15 @@
 				
 				</div>
 			</div>
+			@if ($errors->has('p25'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p25') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p26') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','26. ¿Tiene usted las vacunas al día?')!!}<br>
 
 				<div class="radio">
@@ -703,9 +1027,15 @@
 				<label for="p26N">No</label>
 				</div>
 			</div>
+			@if ($errors->has('p26'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p26') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p27') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','27. ¿Se ha aplicado la vacuna del tetano hace menos de 10 años?')!!}<br>
 
 				<div class="radio">
@@ -716,9 +1046,15 @@
 				<label for="p27N">No</label>
 				</div>
 			</div>
+			@if ($errors->has('p27'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p27') }}</strong>
+                    </span>
+            @endif
 			</li>
  			
- 			<li class="list-group-item"><div class="form-group">
+ 			<li class="list-group-item{{ $errors->has('p28') ? ' has-error' : '' }}">
+ 			<div class="form-group">
 				{!!Form::label('pregunta','28. ¿Utiliza o toma usted algún medicamento continuamente o por temporadas?')!!}<br>
 
 				<div class="radio">
@@ -737,9 +1073,15 @@
 				
 				</div>
 			</div>
+			@if ($errors->has('p28'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p28') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p29') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','29. ¿Tiene venas saltadas en sus piernas?')!!}<br>
 
 				<div class="radio">
@@ -750,9 +1092,15 @@
 				<label for="p29N">No</label>
 				</div>
 			</div>
+			@if ($errors->has('p29'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p29') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p30') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','30. ¿Se le duermen las manos?')!!}<br>
 
 				<div class="radio">
@@ -763,9 +1111,15 @@
 				<label for="p30N">No</label>
 				</div>
 			</div>
+			@if ($errors->has('p30'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p30') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p31') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','31. ¿Tiene dificultad para mover sus manos?')!!}<br>
 
 				<div class="radio">
@@ -776,9 +1130,15 @@
 				<label for="p31N">No</label>
 				</div>
 			</div>
+			@if ($errors->has('p31'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p31') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p32') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','32. ¿Tiene problemas para caminar?')!!}<br>
 
 				<div class="radio">
@@ -789,9 +1149,15 @@
 				<label for="p32N">No</label>
 				</div>
 			</div>
+			@if ($errors->has('p32'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p32') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p33') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Form::label('pregunta','33. ¿Padece usted de hemorroides?')!!}<br>
 
 				<div class="radio">
@@ -802,6 +1168,11 @@
 				<label for="p33N">No</label>
 				</div>
 			</div>
+			@if ($errors->has('p33'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p33') }}</strong>
+                    </span>
+            @endif
 			</li>
 
 			
@@ -815,7 +1186,8 @@
             <div id="mujer" style="display: none">
 
             <ul id="lista3" class="list-group">
-            <li class="list-group-item"><div class="form-group">
+            <li class="list-group-item{{ $errors->has('p34a') ? ' has-error' : '' }}">
+            <div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>34a. ¿Es su menstruación irregular?</small>'))!!}<br>
 
 				<div class="radio">
@@ -826,9 +1198,15 @@
 				<label for="p34aN">No</label>
 				</div>
 			</div>
+			@if ($errors->has('p34a'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p34a') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p34b') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>34b. ¿Padece de sangrado fuera del período menstrual?</small>'))!!}<br>
 
 				<div class="radio">
@@ -839,9 +1217,15 @@
 				<label for="p34bN">No</label>
 				</div>
 			</div>
+			@if ($errors->has('p34b'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p34b') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p34c') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>34c. Fecha de última menstruación
 				</small>'))!!}
 				<br>
@@ -854,15 +1238,27 @@
 					'De 2 meses en adelante'=>'De 2 meses en adelante'], null, 
 				['class'=>'form-control','placeholder' => 'Seleccione una opción...'])!!}<br>
 			</div>
+			@if ($errors->has('p34c'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p34c') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p34d') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>34d. Resultado de último papanicolau</small>'))!!}<br>
 				{!!Form::text('p34d', null,['class'=>'form-control'])!!}<br>					
 			</div>
+			@if ($errors->has('p34d'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p34d') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p34e') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>34e. ¿Ha tenido dificultades en partos?</small>'))!!}<br>
 
 				<div class="radio">
@@ -873,9 +1269,15 @@
 				<label for="p34eN">No</label>
 				</div>
 			</div>
+			@if ($errors->has('p34e'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p34e') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p34f') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>34f. ¿Ha tenido alguna enfermedad o padecimiento ginecológico o de los senos?</small>'))!!}<br>
 
 				<div class="radio">
@@ -894,9 +1296,15 @@
 				
 				</div>
 			</div>
+			@if ($errors->has('p34f'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p34f') }}</strong>
+                    </span>
+            @endif
 			</li>			
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p34g') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>34g. Fecha de última mamografía y resultado: </small>'))!!}<br>
 
 				{!!Html::decode(Form::label('p34g1', '<small>Fecha:</small>'))!!}
@@ -906,9 +1314,15 @@
 				{!!Form::text('p34g2', null,['class'=>'form-control'])!!}<br>
 
 			</div>
+			@if ($errors->has('p34g'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p34g') }}</strong>
+                    </span>
+            @endif
 			</li>
 
-			<li class="list-group-item"><div class="form-group">
+			<li class="list-group-item{{ $errors->has('p34h') ? ' has-error' : '' }}">
+			<div class="form-group">
 				{!!Html::decode(Form::label('pregunta','<small>34h. ¿Está embarazada?</small>'))!!}<br>
 
 				<div class="radio">
@@ -930,6 +1344,11 @@
 				
 				</div>
 			</div>
+			@if ($errors->has('p34h'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('p34h') }}</strong>
+                    </span>
+            @endif
 			</li>
 
              </ul>
@@ -947,7 +1366,7 @@
              	<div class="form-group" id="lista4" style="display: none">
              		
              	<ul class="list-group">
-             		<li class="list-group-item">
+             		<li class="list-group-item{{ $errors->has('e1') ? ' has-error' : '' }}">
              		<div class="form-group">
 					{!!Form::label('pregunta','35a. Cráneo y oídos')!!}<br>		
 
@@ -967,9 +1386,14 @@
 					
 					</div>
 				</div>
+				@if ($errors->has('e1'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('e1') }}</strong>
+                    </span>
+                @endif
 				</li>
 
-				<li class="list-group-item">
+				<li class="list-group-item{{ $errors->has('e2') ? ' has-error' : '' }}">
              		<div class="form-group">
 					{!!Form::label('pregunta','35b. Boca y garganta')!!}<br>		
 
@@ -989,9 +1413,14 @@
 					
 					</div>
 				</div>
+				@if ($errors->has('e2'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('e2') }}</strong>
+                    </span>
+                @endif
 				</li>
 
-				<li class="list-group-item">
+				<li class="list-group-item{{ $errors->has('e3') ? ' has-error' : '' }}">
              		<div class="form-group">
 					{!!Form::label('pregunta','35c. Ojos')!!}<br>		
 
@@ -1011,9 +1440,14 @@
 					
 					</div>
 				</div>
+				@if ($errors->has('e3'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('e3') }}</strong>
+                    </span>
+                @endif
 				</li>
 
-				<li class="list-group-item">
+				<li class="list-group-item{{ $errors->has('e4') ? ' has-error' : '' }}">
              		<div class="form-group">
 					{!!Form::label('pregunta','35d. Cuello - tiroides')!!}<br>		
 
@@ -1033,9 +1467,15 @@
 					
 					</div>
 				</div>
+				@if ($errors->has('e4'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('e4') }}</strong>
+                    </span>
+                @endif
+				</li>
 				</li>
 
-				<li class="list-group-item">
+				<li class="list-group-item{{ $errors->has('e5') ? ' has-error' : '' }}">
              		<div class="form-group">
 					{!!Form::label('pregunta','35e. Pulmones')!!}<br>		
 
@@ -1055,9 +1495,14 @@
 					
 					</div>
 				</div>
+				@if ($errors->has('e5'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('e5') }}</strong>
+                    </span>
+                @endif
 				</li>
 
-				<li class="list-group-item">
+				<li class="list-group-item{{ $errors->has('e6') ? ' has-error' : '' }}">
              		<div class="form-group">
 					{!!Form::label('pregunta','35f. Corazón')!!}<br>		
 
@@ -1077,9 +1522,14 @@
 					
 					</div>
 				</div>
+				@if ($errors->has('e6'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('e6') }}</strong>
+                    </span>
+                @endif
 				</li>
 
-				<li class="list-group-item">
+				<li class="list-group-item{{ $errors->has('e7') ? ' has-error' : '' }}">
              		<div class="form-group">
 					{!!Form::label('pregunta','35g. Abdomen')!!}<br>		
 
@@ -1099,9 +1549,14 @@
 					
 					</div>
 				</div>
+				@if ($errors->has('e7'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('e7') }}</strong>
+                    </span>
+                @endif
 				</li>
 
-				<li class="list-group-item">
+				<li class="list-group-item{{ $errors->has('e8') ? ' has-error' : '' }}">
              		<div class="form-group">
 					{!!Form::label('pregunta','35h. Sistema vascular periférico')!!}<br>		
 
@@ -1121,9 +1576,14 @@
 					
 					</div>
 				</div>
+				@if ($errors->has('e8'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('e8') }}</strong>
+                    </span>
+                @endif
 				</li>
 
-				<li class="list-group-item">
+				<li class="list-group-item{{ $errors->has('e9') ? ' has-error' : '' }}">
              		<div class="form-group">
 					{!!Form::label('pregunta','35i. Estado neurológico')!!}<br>		
 
@@ -1143,9 +1603,14 @@
 					
 					</div>
 				</div>
+				@if ($errors->has('e9'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('e9') }}</strong>
+                    </span>
+                @endif
 				</li>
 
-				<li class="list-group-item">
+				<li class="list-group-item{{ $errors->has('e10') ? ' has-error' : '' }}">
              		<div class="form-group">
 					{!!Form::label('pregunta','35j. Sistema muscular')!!}<br>		
 
@@ -1165,9 +1630,14 @@
 					
 					</div>
 				</div>
+				@if ($errors->has('e10'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('e10') }}</strong>
+                    </span>
+                @endif
 				</li>
 
-				<li class="list-group-item">
+				<li class="list-group-item{{ $errors->has('e11') ? ' has-error' : '' }}">
              		<div class="form-group">
 					{!!Form::label('pregunta','35k. Sistema Articular')!!}<br>		
 
@@ -1187,9 +1657,14 @@
 					
 					</div>
 				</div>
+				@if ($errors->has('e11'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('e11') }}</strong>
+                    </span>
+                @endif
 				</li>
 
-				<li class="list-group-item">
+				<li class="list-group-item{{ $errors->has('e12') ? ' has-error' : '' }}">
              		<div class="form-group">
 					{!!Form::label('pregunta','35l. Testículos')!!}<br>		
 
@@ -1209,9 +1684,14 @@
 					
 					</div>
 				</div>
+				@if ($errors->has('e12'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('e12') }}</strong>
+                    </span>
+                @endif
 				</li>
 
-				<li class="list-group-item">
+				<li class="list-group-item{{ $errors->has('e13') ? ' has-error' : '' }}">
              		<div class="form-group">
 					{!!Form::label('pregunta','35m. Mamas')!!}<br>		
 
@@ -1231,19 +1711,28 @@
 					
 					</div>
 				</div>
+				@if ($errors->has('e13'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('e13') }}</strong>
+                    </span>
+                @endif
 				</li>
              		</ul>
              	</div>
              </li>
 
-             <li class="list-group-item"><div class="form-group">
+             <li class="list-group-item{{ $errors->has('detalles') ? ' has-error' : '' }}">
+             <div class="form-group">
 				{!!Form::label('detalles','Detalles de preguntas respondidas afirmativamente')!!}<br>
 				<p><small>Escriba aquí cualquier información relevante sobre el paciente encuestado a partir de las preguntas realizadas</small></p>
 
 				{!!Form::textarea('detalles',null,['class'=>'form-control'])!!}<br>
-				
-				
 			</div>
+			@if ($errors->has('detalles'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('detalles') }}</strong>
+                    </span>
+                @endif
 			</li>
 
 			
@@ -1252,7 +1741,7 @@
 		</ul>	
 		<div class="form-group well" style="text-align: right;">
 			
-				<button type="submit" class="btn btn-primary">Registrar </button>
+				<button type="submit" id="registro" class="btn btn-primary">Registrar </button>
 					
 		</div>
 		</div>

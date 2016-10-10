@@ -45,9 +45,10 @@ function Mostrar(btn){
 $("#actualizar").click(function(e){
 	e.preventDefault();
 	var value = $("#id").val();
-	dataSerialize = $("#form_update").serialize();
-	var route = "http://localhost:8000/usuario/"+value+"";
+	var dataSerialize = $("#form_update").serialize();
+	var route = "{{url('usuario')}}/" + value + "";
 	var token = $("#token").val();
+	alert(dataSerialize);
 
 	$.ajax({
 		url: route,
@@ -61,3 +62,4 @@ $("#actualizar").click(function(e){
 		}
 	});
 });
+
