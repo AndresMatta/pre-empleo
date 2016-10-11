@@ -8,6 +8,8 @@ use Formulario\Http\Requests;
 use Formulario\User;
 use Formulario\Http\Requests\UsuarioRequest;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\facades\Session;
+use Illuminate\Support\facades\Redirect;
 
 class UsuarioController extends Controller
 {
@@ -15,6 +17,16 @@ class UsuarioController extends Controller
 use RegistersUsers;
 
 protected $username = 'username';
+
+/**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
  /**
      * Display a listing of the resource.
@@ -24,11 +36,11 @@ protected $username = 'username';
     public function index(Request $request)
     {
         //
-        if ($request->ajax()) {
-            $users = User::all();
-            return response()->json($users);
+        $users = User::all();
+       if($request->ajax()){
+            return response()->json(view('usuario.users',compact('users'))->render());
         }
-        return view('usuario.usuarios');
+        return view('usuario.usuarios',compact('users'));
     }
 
     /**
@@ -118,7 +130,8 @@ protected $username = 'username';
         //
         $user = User::find($id);
         $user->delete();
+        Session::flash('message', 'Usuario Eliminado Correctamente');
+        return Redirect::to('/usuario');
+}
 
-        return response()->json(["mensaje" => "borrado"]);
-    }
 }

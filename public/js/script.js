@@ -4,7 +4,7 @@ $("#registro").click(function(){
 	var email = $("#email").val();
 	var tipo = $("#tipo").val();
 	var password = $("#password").val();
-	var route = "http://localhost:8000/usuario";
+	var route = "/usuario";
 	var token = $("#token").val();
 
 	$.ajax({
