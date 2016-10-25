@@ -11,10 +11,9 @@
     <title>{{ config('app.name', 'Pre - empleo') }}</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
-    <link href="/css/estilos.css" rel="stylesheet">
     {!!Html::style('css/font-awesome.min.css')!!}
-
+    {!!Html::style('css/app.css') !!}
+    {!!Html::style('css/estilos.css') !!}
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -82,7 +81,7 @@
     @yield('content')
 
     <!-- Scripts -->
-    <script src="/js/pre-empleo.js"></script>
-    <script src="/js/app.js"></script>
+    {!!Html::script('js/pre-empleo.js') !!}
+    {!!Html::script('js/app.js') !!}
 </body>
 </html>

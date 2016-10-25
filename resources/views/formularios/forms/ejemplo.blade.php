@@ -147,14 +147,14 @@
 				<p>{{ $cuestionario->p11 }}</p>
 			</div>
 			</li>
-
-			<div class="page-break"></div>
 			
 			<li class="list-group-item"><div class="form-group">
 				{!!Form::label('pregunta','12. ¿Ha tenido o se encuentra en tratamiento con insulina, cortisona u otro tipo de hormona?')!!}<br>
 				<p>{{ $cuestionario->p12 }}</p>
 			</div>
 			</li>
+
+			<div class="page-break"></div>
 
 			<li class="list-group-item"><div class="form-group">
 				{!!Form::label('pregunta','13. ¿Se ha sometido a algún tipo de examen radiológico por enfermedad o chequeo médico, por ejemplo Rx Torax, ultrasonido, gastroscopía, mamografía, etc?')!!}<br>
@@ -232,8 +232,6 @@
 				<p><small>{{ $cuestionario->p15h }}</small></p>	
 			</div>
 			</li>
-
-			<div class="page-break"></div>
 			
 			<li class="list-group-item">
 			<div class="form-group">
@@ -250,7 +248,7 @@
 			</li>
 
 			</ul>
-			
+
 			</div>
 			</li>
 
@@ -260,10 +258,12 @@
 				@if ($cuestionario->p16=='NO')
 					<p>{{ $cuestionario->p16 }}</p>
 				@else
-					<p>{{ $cuestionario->p16a }}</p>		
+					<p>Causa: {{ $cuestionario->p16a }}</p>		
 				@endif
 			</div>
 			</li>
+
+			<div class="page-break"></div>
 
 		<li class="list-group-item">
 
@@ -346,8 +346,6 @@
 			</div>
 			</li>
 
-			<div class="page-break"></div>
-
 			<li class="list-group-item">
 			<div class="form-group">
 				{!!Form::label('pregunta','19. ¿Ha estado hospitalizado?')!!}<br>
@@ -390,6 +388,8 @@
 
 			</div>
 			</li>
+
+			<div class="page-break"></div>
 
 			<li class="list-group-item">
 			<div class="form-group">
@@ -465,8 +465,6 @@
 				<p>{{ $cuestionario->p29 }}</p>
 			</div>
 			</li>
-
-			<div class="page-break"></div>
 			
 			<li class="list-group-item">
 			<div class="form-group">
@@ -474,8 +472,6 @@
 				<p>{{ $cuestionario->p30 }}</p>
 			</div>
 			</li>
-
-			
 			
 			<li class="list-group-item">
 			<div class="form-group">
@@ -498,6 +494,7 @@
 			</div>
 			</li>
 
+			<div class="page-break"></div>
 			
 			<li class="list-group-item">
 
@@ -770,15 +767,16 @@
              </ul>
              </li>
 
-             <div class="page-break"></div>
-
              <li class="list-group-item"><div class="form-group">
-				{!!Form::label('detalles','Detalles de preguntas respondidas afirmativamente')!!}<br>
-				<p><small>Información relevante sobre el paciente encuestado a partir de las preguntas realizadas: </small></p>
-
+				{!!Form::label('detalles','Información relevante sobre el paciente encuestado a partir de las preguntas realizadas:')!!}<br>
 				<p><i>{{ $cuestionario->detalles }}</i></p>
-				
-				
+			</div>
+			</li>
+
+			<li class="list-group-item">
+			<div class="form-group">
+				{!!Form::label('condicion','Condición del empleado para emplear tareas demandadas por su puesto: ')!!}<br>
+				<p><i>{{ $cuestionario->condicion }}</i></p>
 			</div>
 			</li>
 
@@ -789,7 +787,7 @@
 
 		<div class="form-group well">
 			
-				<p>Esta encuesta fue realizada por médico: </p>
+				<p>Esta encuesta fue realizada por médico: {{ $cuestionario->medico }}</p>
 					
 		</div><br><br>
 		</div>

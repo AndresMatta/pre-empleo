@@ -5,6 +5,7 @@ namespace Formulario\Http\Controllers;
 use Illuminate\Http\Request;
 use Formulario\Http\Requests;
 use Formulario\Http\Requests\CuestionarioRequest;
+use Illuminate\Support\Facades\Auth;
 use Formulario\Cuestionario;
 
 class CuestionarioController extends Controller
@@ -27,11 +28,11 @@ class CuestionarioController extends Controller
     public function index(Request $request)
     {
         //
-        if ($request->ajax()) {
-            $cuestionario = Cuestionario::all();
-            return response()->json($cuestionario);
+       $cuestionario = Cuestionario::paginate(25);
+       if($request->ajax()){
+            return response()->json(view('formularios.forms.cuestionario',compact('cuestionario'))->render());
         }
-        return view('formularios.consultas');
+        return view('formularios.consultas',compact('cuestionario'));
     }
 
     /**
@@ -42,7 +43,8 @@ class CuestionarioController extends Controller
     public function create()
     {
         //
-        return view('formularios.create');
+        $medico = Auth::user()->name;
+        return view('formularios.create', compact('medico'));
     }
 
     /**

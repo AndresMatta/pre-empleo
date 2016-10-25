@@ -30,7 +30,6 @@ class PDFController extends Controller
 
      public function descargar($id) 
     {
-
         $cuestionario = Cuestionario::find($id);
         $nombre = $cuestionario['nombre'];
         $view =  \View::make('formularios.forms.ejemplo', compact('cuestionario'))->render();

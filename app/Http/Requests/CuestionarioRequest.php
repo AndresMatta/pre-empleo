@@ -45,7 +45,7 @@ class CuestionarioRequest extends FormRequest
         'e1' => 'required','e2' => 'required','e3' => 'required','e4' => 'required',
         'e5' => 'required','e6' => 'required','e7' => 'required','e8' => 'required',
         'e9' => 'required','e10' => 'required','e11' => 'required','e12' => 'required',
-        'e13' => 'required'
+        'e13' => 'required', 'condicion' => 'required'
         ];
     }
 }

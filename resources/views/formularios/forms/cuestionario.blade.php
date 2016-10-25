@@ -1,6 +1,3 @@
-@extends('layouts.admin')
-	@section('content')
-	<div class="users">
 	<table class="table">
 			<thead>
 				<th>Identifacion</th>
@@ -25,9 +22,3 @@
 				@endforeach
 		</table>
 	{!! $cuestionario->render(); !!}
-	</div>
-	@endsection
-
-	@section('scripts')
-		{!!Html::script('js/paginacion.js')!!}
-	@endsection

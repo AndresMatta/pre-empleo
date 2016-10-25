@@ -8,8 +8,8 @@ use Formulario\Http\Requests;
 use Formulario\User;
 use Formulario\Http\Requests\UsuarioRequest;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\facades\Session;
-use Illuminate\Support\facades\Redirect;
+use Session;
+use Redirect;
 
 class UsuarioController extends Controller
 {
